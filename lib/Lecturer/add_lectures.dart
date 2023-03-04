@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:login_flutter/Lecturer/lecturer_main.dart';
@@ -11,7 +13,15 @@ class AddLectures extends StatefulWidget {
 
 class _AddLecturesState extends State<AddLectures> {
 
+  final user = FirebaseAuth.instance.currentUser!;
+
   int _currentPageIndex = 0; // track the current page index
+
+  final _subjectCodeController = TextEditingController();
+  final _lectureTopicController = TextEditingController();
+  final _dateController = TextEditingController();
+  final _timeController = TextEditingController();
+  final _venueController = TextEditingController();
 
   // define a list of pages to navigate to
   final List<Widget> _pages = [    LecturerMain(),  ];
@@ -58,6 +68,22 @@ class _AddLecturesState extends State<AddLectures> {
     }
   }
 
+  Future addLectures ({required String subCode, required String lecTopic, required DateTime? date, required String time, required String venue}) async {
+    final docUser = FirebaseFirestore.instance.collection('lecture').doc();
+
+    final json = {
+      'subject code': subCode,
+      'lecture topic': lecTopic,
+      'date': date,
+      'time': time,
+      'venue': venue,
+      'lecturerEmail': user.email!,
+    };
+
+    await docUser.set(json);
+
+  }
+
   Future<void> _selectImage() async {
     // TODO: Implement image selection logic
   }
@@ -79,6 +105,7 @@ class _AddLecturesState extends State<AddLectures> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextFormField(
+                  controller: _subjectCodeController,
                   decoration: InputDecoration(
                     labelText: 'Subject Code',
                     border: OutlineInputBorder(
@@ -98,6 +125,7 @@ class _AddLecturesState extends State<AddLectures> {
 
                 SizedBox(height: 16.0),
                 TextFormField(
+                  controller: _lectureTopicController,
                   decoration: InputDecoration(
                     labelText: 'Lecture Topic',
                     border: OutlineInputBorder(
@@ -194,6 +222,7 @@ class _AddLecturesState extends State<AddLectures> {
                 ),
                 SizedBox(height: 16.0),
                 TextFormField(
+                  controller: _venueController,
                   decoration: InputDecoration(
                     labelText: 'Venue',
                     border: OutlineInputBorder(
@@ -214,7 +243,18 @@ class _AddLecturesState extends State<AddLectures> {
 
                 SizedBox(height: 16.0),
                 ElevatedButton(
-                  onPressed: _submitForm,
+                  // onPressed: _submitForm,
+                  onPressed: () {
+                    final subCode = _subjectCodeController.text.trim();
+                    final lecTopic = _lectureTopicController.text.trim();
+                    final date = _date;
+                    final time = _time.toString();
+                    final venue = _venueController.text.trim();
+
+                    addLectures(subCode: subCode, lecTopic: lecTopic, date: date, time: time, venue: venue);
+
+                    Navigator.of(context).pop();
+                  },
                   child: Text('Submit'),
                 ),
               ],

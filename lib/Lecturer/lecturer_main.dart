@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:login_flutter/Lecturer/add_lectures.dart';
 import 'package:login_flutter/Lecturer/schedule.dart';
@@ -88,7 +89,9 @@ class _LecturerMainState extends State<LecturerMain> {
               height: 50,
               width: 200,
               child: ElevatedButton.icon(
-                onPressed: AddLectures,
+                onPressed: () {
+                  FirebaseAuth.instance.signOut();
+                },
                 icon: Icon(
                   Icons.store,
                   size: 24.0,

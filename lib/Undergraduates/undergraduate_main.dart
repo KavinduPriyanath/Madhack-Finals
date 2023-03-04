@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class UndergraduateMain extends StatefulWidget {
@@ -23,6 +24,7 @@ class _UndergraduateMainState extends State<UndergraduateMain> {
       appBar: AppBar(
         title: Text("Undergraduate Home"),
       ),
+
         body: Center(child: Column(children: <Widget>[
           Container(
             margin: EdgeInsets.all(25),
@@ -107,6 +109,7 @@ class _UndergraduateMainState extends State<UndergraduateMain> {
           ),
         ]
         ))
+
     );
   }
 }
