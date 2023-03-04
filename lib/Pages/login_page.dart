@@ -22,6 +22,10 @@ class _LoginPageState extends State<LoginPage> {
         .signInWithEmailAndPassword(email: _emailController.text.trim(), password: _passwordController.text.trim());
   }
 
+  void registerNow(){
+    Navigator.pushNamed(context, "/register");
+  }
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -39,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.android_rounded,
+                Icon(Icons.school,
                 size: 100,
                 ),
                 Text(
@@ -50,8 +54,9 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: 13,),
                 Text(
-                  "Welcome back, you've been missed!",
+                  "Enhance your university experience",
                   style: TextStyle(
+                    color: Colors.black87,
                     fontWeight: FontWeight.normal,
                     fontSize: 18,
                   ),
@@ -110,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Container(
                       padding: EdgeInsets.all(18),
                       decoration: BoxDecoration(
-                        color: Colors.deepPurple,
+                        color: Colors.blueAccent,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Center(
@@ -131,11 +136,12 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Not a member?"),
+                      Text("Don't have an account?"),
                       SizedBox(width: 4.0,),
                       GestureDetector(
                         onTap: widget.showRegisterPage,
-                        child: Text("Register Now",
+                        // onTap: registerNow,
+                        child: Text("Create Now",
                         style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,

@@ -27,6 +27,10 @@ class _HomePageState extends State<HomePage> {
     Navigator.pushNamed(context, "/societymain");
   }
 
+  void Signout() {
+    FirebaseAuth.instance.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,18 +75,21 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SizedBox(height: 15.0,),
-            Container(
-              padding: EdgeInsets.all(15.0),
-              decoration: BoxDecoration(
-                color: Colors.blue[300],
-                borderRadius: BorderRadius.circular(12),
+            GestureDetector(
+              onTap: Signout,
+              child: Container(
+                padding: EdgeInsets.all(15.0),
+                decoration: BoxDecoration(
+                  color: Colors.blue[300],
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Text("Canteen",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 19,
+                    fontWeight: FontWeight.bold,
+                  ),),
               ),
-              child: Text("Canteen",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 19,
-                  fontWeight: FontWeight.bold,
-                ),),
             ),
 
             SizedBox(height: 15.0,),

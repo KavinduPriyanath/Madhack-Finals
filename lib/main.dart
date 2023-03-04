@@ -7,6 +7,7 @@ import 'package:login_flutter/Society/society_main.dart';
 import 'package:login_flutter/Undergraduates/undergraduate_main.dart';
 import 'Society/edit_profile.dart';
 import 'Society/view_event.dart';
+
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 
@@ -20,14 +21,29 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool showLoginPage = true;
+
+  void ToggleScreens() {
+
+    setState(() {
+      showLoginPage = !showLoginPage;
+    });
+
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       // initialRoute: "/currentMain",
-      home: HomePage(),
+      home: MainPage(),
       routes: {
         '/dwd' : (context) => MainPage(),
         '/currentMain' : (context) => HomePage(),
