@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:login_flutter/Society/profile.dart';
+
+import 'add_events.dart';
 
 class SocietyMain extends StatefulWidget {
   const SocietyMain({Key? key}) : super(key: key);
@@ -8,6 +11,30 @@ class SocietyMain extends StatefulWidget {
 }
 
 class _SocietyMainState extends State<SocietyMain> {
+
+  int _currentPageIndex = 0; // track the current page index
+
+  // define a list of pages to navigate to
+  final List<Widget> _pages = [    SocietyMain(),    Profile(),  ];
+
+  // update the current page index
+  void _updatePageIndex(int index) {
+    setState(() {
+      _currentPageIndex = index;
+      if (_currentPageIndex == 0) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SocietyMain()),
+        );
+      }
+      else if (_currentPageIndex == 1) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Profile()),
+        );
+      }
+    });
+  }
 
   void addEvents() {
     Navigator.pushNamed(context, "/createevents");
@@ -156,6 +183,8 @@ class _SocietyMainState extends State<SocietyMain> {
       ),
 
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentPageIndex,
+        onTap: _updatePageIndex,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:login_flutter/Society/profile.dart';
 import 'package:login_flutter/Society/society_main.dart';
 
-class ViewSocietyEvents extends StatefulWidget {
-  const ViewSocietyEvents({Key? key}) : super(key: key);
+class Profile extends StatefulWidget {
+  const Profile({Key? key}) : super(key: key);
 
   @override
-  State<ViewSocietyEvents> createState() => _ViewSocietyEventsState();
+  State<Profile> createState() => _ProfileState();
 }
 
-class _ViewSocietyEventsState extends State<ViewSocietyEvents> {
+class _ProfileState extends State<Profile> {
 
   int _currentPageIndex = 0; // track the current page index
 
   // define a list of pages to navigate to
-  final List<Widget> _pages = [
-    SocietyMain(),
-    Profile(),
-  ];
+  final List<Widget> _pages = [    SocietyMain(),    Profile(),  ];
 
   // update the current page index
   void _updatePageIndex(int index) {
@@ -37,15 +33,15 @@ class _ViewSocietyEventsState extends State<ViewSocietyEvents> {
       }
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Events"),
+        title: Text("Profile"),
       ),
 
       //body
+
 
       //bottom navbar
       bottomNavigationBar: BottomNavigationBar(
@@ -65,3 +61,4 @@ class _ViewSocietyEventsState extends State<ViewSocietyEvents> {
     );
   }
 }
+
