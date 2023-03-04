@@ -68,7 +68,7 @@ class _SocietyMainState extends State<SocietyMain> {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(70, 20, 70, 10),
                 child: Card(
-                  color: Colors.blue[200],
+                  color: Colors.blue[50],
                   child: Padding(
                     padding: const EdgeInsets.all(10),
                     child: Column(
@@ -76,14 +76,10 @@ class _SocietyMainState extends State<SocietyMain> {
                       children: [
                         Icon(
                           Icons.event,
-                          color: Colors.blue[900],
                         ),
                         SizedBox(height: 16.0),
                         Text(
-                          'Add Events',
-                          style: TextStyle(
-                            color: Colors.blue[900],
-                          ),
+                          'Add Events'
                         ),
                       ],
                     ),
@@ -94,7 +90,7 @@ class _SocietyMainState extends State<SocietyMain> {
             Padding(
               padding: const EdgeInsets.fromLTRB(70, 10, 70, 10),
               child: Card(
-                color: Colors.blue[200],
+                color: Colors.blue[50],
                 child: Padding(
                   padding: const EdgeInsets.all(10),
                   child: Column(
@@ -102,14 +98,10 @@ class _SocietyMainState extends State<SocietyMain> {
                     children: [
                       Icon(
                         Icons.local_grocery_store,
-                        color: Colors.blue[900],
                       ),
                       SizedBox(height: 16.0),
                       Text(
-                        'Go to Store',
-                        style: TextStyle(
-                          color: Colors.blue[900],
-                        ),
+                        'Go to Store'
                       ),
                     ],
                   ),
@@ -148,7 +140,7 @@ class _SocietyMainState extends State<SocietyMain> {
                     child: GestureDetector(
                       onTap: viewEvents,
                       child: Card(
-                        color: Colors.blue[200],
+                        color: Colors.lightBlue[100],
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Column(
