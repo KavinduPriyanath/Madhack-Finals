@@ -10,7 +10,7 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
 
-  int _currentPageIndex = 0; // track the current page index
+  int _currentPageIndex = 1; // track the current page index
 
   // define a list of pages to navigate to
   final List<Widget> _pages = [    SocietyMain(),    Profile(),  ];
