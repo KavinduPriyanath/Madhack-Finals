@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:login_flutter/Society/profile.dart';
 
@@ -50,6 +52,8 @@ class _SocietyMainState extends State<SocietyMain> {
     Event('Mar 15', '2:30 PM', 'Event 3 description'),
   ];
 
+  final CollectionReference upcomingEvents = FirebaseFirestore.instance.collection('event');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,23 +91,28 @@ class _SocietyMainState extends State<SocietyMain> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(70, 10, 70, 10),
-              child: Card(
-                color: Colors.blue[50],
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.local_grocery_store,
-                      ),
-                      SizedBox(height: 16.0),
-                      Text(
-                        'Go to Store'
-                      ),
-                    ],
+            GestureDetector(
+              onTap: (){
+                FirebaseAuth.instance.signOut();
+              },
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(70, 10, 70, 10),
+                child: Card(
+                  color: Colors.blue[50],
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.local_grocery_store,
+                        ),
+                        SizedBox(height: 16.0),
+                        Text(
+                          'Go to Store'
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -130,45 +139,56 @@ class _SocietyMainState extends State<SocietyMain> {
             ),
 
             //List of events
-            Expanded(
-              child: ListView.builder(
-                itemCount: _events.length,
-                itemBuilder: (BuildContext context, int index) {
-                  Event event = _events[index];
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GestureDetector(
-                      onTap: viewEvents,
-                      child: Card(
-                        color: Colors.lightBlue[100],
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                event.date,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
+            StreamBuilder(
+              stream: upcomingEvents.snapshots(),
+              builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                if (streamSnapshot.hasData) {
+                  return Expanded(
+                    child: ListView.builder(
+                      itemCount: streamSnapshot.data!.docs.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final DocumentSnapshot documentSnapshot = streamSnapshot.data!.docs[index];
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: GestureDetector(
+                            onTap: viewEvents,
+                            child: Card(
+                              color: Colors.lightBlue[100],
+                              child: Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      documentSnapshot['name'],
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(height: 8.0),
+                                    Text(
+                                      documentSnapshot['venue'],
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(height: 8.0),
+                                    Text(documentSnapshot['description']),
+                                  ],
                                 ),
                               ),
-                              SizedBox(height: 8.0),
-                              Text(
-                                event.time,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              SizedBox(height: 8.0),
-                              Text(event.description),
-                            ],
+                            ),
                           ),
-                        ),
-                      ),
+                        );
+                      },
                     ),
                   );
-                },
-              ),
+                }
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              },
+
             ),
           ],
         ),

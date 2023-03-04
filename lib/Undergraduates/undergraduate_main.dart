@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class UndergraduateMain extends StatefulWidget {
@@ -13,6 +14,11 @@ class _UndergraduateMainState extends State<UndergraduateMain> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Undergraduate Main"),
+      ),
+      body: MaterialButton(onPressed: () {
+        FirebaseAuth.instance.signOut();
+      },
+      child: Text("logout"),
       ),
     );
   }

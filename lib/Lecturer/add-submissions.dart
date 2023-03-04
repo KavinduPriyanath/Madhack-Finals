@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class AddSubmission extends StatefulWidget {
@@ -10,6 +11,10 @@ class AddSubmission extends StatefulWidget {
 class _AddSubmissionState extends State<AddSubmission> {
 
   int _currentPageIndex = 0; // track the current page index
+
+  final _subCodeController = TextEditingController();
+  final _dateController = TextEditingController();
+  final _timeController = TextEditingController();
 
   // define a list of pages to navigate to
   // final List<Widget> _pages = [    LecturerMain(),  ];
@@ -57,6 +62,19 @@ class _AddSubmissionState extends State<AddSubmission> {
     // TODO: Implement image selection logic
   }
 
+  Future addSubmissions ({required String subCode, required DateTime? date, required String time}) async {
+    final docUser = FirebaseFirestore.instance.collection('deadline').doc();
+
+    final json = {
+      'subject code': subCode,
+      'date': date,
+      'time': time,
+    };
+
+    await docUser.set(json);
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -75,6 +93,7 @@ class _AddSubmissionState extends State<AddSubmission> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextFormField(
+                  controller: _subCodeController,
                   decoration: InputDecoration(
                     labelText: 'Subject Code',
                     border: OutlineInputBorder(
@@ -172,7 +191,18 @@ class _AddSubmissionState extends State<AddSubmission> {
 
                 SizedBox(height: 16.0),
                 ElevatedButton(
-                  onPressed: _submitForm,
+                  // onPressed: _submitForm,
+                  onPressed: () {
+                    final subCode = _subCodeController.text.trim();
+                    final date = _date;
+                    final time = _time.toString();
+
+                    addSubmissions(subCode: subCode, date: date, time: time);
+
+                    Navigator.of(context).pop();
+
+                  },
+
                   child: Text('Submit'),
                 ),
               ],

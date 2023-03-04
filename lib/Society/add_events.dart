@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:login_flutter/Society/profile.dart';
 import 'package:login_flutter/Society/society_main.dart';
@@ -13,6 +14,13 @@ class AddSocietyEvents extends StatefulWidget {
 }
 
 class _AddSocietyEventsState extends State<AddSocietyEvents> {
+
+  //controllers
+  final _eventNameController = TextEditingController();
+  final _eventDateController = TextEditingController();
+  final _eventTimeController = TextEditingController();
+  final _venueController = TextEditingController();
+  final _descriptionController = TextEditingController();
 
   int _currentPageIndex = 0; // track the current page index
 
@@ -64,6 +72,32 @@ class _AddSocietyEventsState extends State<AddSocietyEvents> {
     // TODO: Implement image selection logic
   }
 
+
+  // Future createEvent(String  eventName, DateTime? eventDate, TimeOfDay? eventTime, String eventVenue, String eventDescription) async {
+  //   await FirebaseFirestore.instance.collection('event').add({
+  //     'event name': eventName,
+  //     'event date': eventDate,
+  //     'event time': eventTime,
+  //     'venue': eventVenue,
+  //     'description': eventDescription,
+  //   });
+  // }
+  //
+  Future createRecord ({required String eventName, required DateTime? eventDate, required String eventTime, required String eventVenue, required String description}) async {
+    final docUser = FirebaseFirestore.instance.collection('event').doc();
+
+    final json = {
+      'name': eventName,
+      'date': eventDate,
+      'time': eventTime,
+      'venue': eventVenue,
+      'description': description,
+    };
+
+    await docUser.set(json);
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,6 +115,7 @@ class _AddSocietyEventsState extends State<AddSocietyEvents> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
           TextFormField(
+            controller: _eventNameController,
           decoration: InputDecoration(labelText: 'Event Name'),
           validator: (value) {
           if (value!.isEmpty) {
@@ -109,6 +144,7 @@ class _AddSocietyEventsState extends State<AddSocietyEvents> {
           },
           child: IgnorePointer(
           child: TextFormField(
+            // controller: _eventDateController,
           decoration: InputDecoration(labelText: 'Event Date'),
           validator: (value) {
           if (_eventDate == null) {
@@ -161,6 +197,7 @@ class _AddSocietyEventsState extends State<AddSocietyEvents> {
           ),
             SizedBox(height: 16.0),
             TextFormField(
+              controller: _venueController,
               decoration: InputDecoration(labelText: 'Venue'),
               validator: (value) {
                 if (value!.isEmpty) {
@@ -174,6 +211,7 @@ class _AddSocietyEventsState extends State<AddSocietyEvents> {
             ),
             SizedBox(height: 16.0),
             TextFormField(
+              controller: _descriptionController,
               decoration: InputDecoration(labelText: 'Description'),
               validator: (value) {
                 if (value!.isEmpty) {
@@ -188,7 +226,26 @@ class _AddSocietyEventsState extends State<AddSocietyEvents> {
 
             SizedBox(height: 16.0),
             ElevatedButton(
-              onPressed: _submitForm,
+              // onPressed: _submitForm,
+              onPressed: () {
+                // final eName = _eventName;
+                // final eDate = _eventDate;
+                // final eTime = _eventTime;
+                // final eVenue = _eventVenue;
+                // final eDescription = _eventDescription;
+                //
+                // createEvent(eName, eDate, eTime, eVenue, eDescription);
+
+                final eName = _eventNameController.text.trim();
+                final eDate = _eventDate;
+                final eTime = _eventTime.toString();
+                final eVenue = _venueController.text.trim();
+                final eDescription = _descriptionController.text.trim();
+
+                createRecord(eventName: eName, eventDate: eDate, eventTime: eTime, eventVenue: eVenue, description: eDescription);
+
+                Navigator.of(context).pop();
+              },
               child: Text('Submit'),
             ),
           ],
