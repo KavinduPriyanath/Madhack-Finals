@@ -1,5 +1,3 @@
-// import 'dart:html;
-
 import 'package:flutter/material.dart';
 
 class SocietyMain extends StatefulWidget {
@@ -10,6 +8,14 @@ class SocietyMain extends StatefulWidget {
 }
 
 class _SocietyMainState extends State<SocietyMain> {
+
+  void addEvents() {
+    Navigator.pushNamed(context, "/createevents");
+  }
+
+  void viewEvents() {
+    Navigator.pushNamed(context, "/viewevents");
+  }
 
   List<Event> _events = [
     Event('Mar 10', '8:00 PM', 'Event 1 description'),
@@ -30,27 +36,30 @@ class _SocietyMainState extends State<SocietyMain> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.fromLTRB(70, 20, 70, 10),
-              child: Card(
-                color: Colors.blue[200],
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.event,
-                        color: Colors.blue[900],
-                      ),
-                      SizedBox(height: 16.0),
-                      Text(
-                        'Add Events',
-                        style: TextStyle(
+            GestureDetector(
+              onTap: addEvents,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(70, 20, 70, 10),
+                child: Card(
+                  color: Colors.blue[200],
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.event,
                           color: Colors.blue[900],
                         ),
-                      ),
-                    ],
+                        SizedBox(height: 16.0),
+                        Text(
+                          'Add Events',
+                          style: TextStyle(
+                            color: Colors.blue[900],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -109,29 +118,32 @@ class _SocietyMainState extends State<SocietyMain> {
                   Event event = _events[index];
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Card(
-                      color: Colors.blue[200],
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              event.date,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
+                    child: GestureDetector(
+                      onTap: viewEvents,
+                      child: Card(
+                        color: Colors.blue[200],
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                event.date,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                            SizedBox(height: 8.0),
-                            Text(
-                              event.time,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
+                              SizedBox(height: 8.0),
+                              Text(
+                                event.time,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                            SizedBox(height: 8.0),
-                            Text(event.description),
-                          ],
+                              SizedBox(height: 8.0),
+                              Text(event.description),
+                            ],
+                          ),
                         ),
                       ),
                     ),
