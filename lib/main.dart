@@ -8,8 +8,13 @@ import 'package:login_flutter/Pages/home_page.dart';
 import 'package:login_flutter/Society/add_events.dart';
 import 'package:login_flutter/Society/society_main.dart';
 import 'package:login_flutter/Undergraduates/undergraduate_main.dart';
+
+import 'package:login_flutter/Undergraduates/events_main.dart';
+import 'package:login_flutter/Undergraduates/single_event.dart';
+
 import 'Society/edit_profile.dart';
 import 'Society/view_event.dart';
+
 
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
@@ -54,6 +59,10 @@ class _MyAppState extends State<MyApp> {
         '/undergraduatemain': (context) => UndergraduateMain(),
         '/societymain': (context) => SocietyMain(),
 
+        '/eventsmain' : (context) => EventsMain(),
+        '/viewevent' : (context) => SingleEvent(),
+
+
         '/addlectures' : (context) => AddLectures(),
         '/addsubmission':(context) => AddSubmission(),
         '/schedule' : (context) => Schedule(),
@@ -61,6 +70,7 @@ class _MyAppState extends State<MyApp> {
         '/createevents': (context) => AddSocietyEvents(),
         '/viewevents': (context) => ViewSocietyEvents(),
         '/editprofile': (context) => EditProfile(),
+
 
       },
     );
