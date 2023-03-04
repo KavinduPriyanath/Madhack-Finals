@@ -4,6 +4,8 @@ import 'package:login_flutter/Lecturer/lecturer_main.dart';
 import 'package:login_flutter/Pages/home_page.dart';
 import 'package:login_flutter/Society/society_main.dart';
 import 'package:login_flutter/Undergraduates/undergraduate_main.dart';
+import 'package:login_flutter/Undergraduates/events_main.dart';
+import 'package:login_flutter/Undergraduates/single_event.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 
@@ -31,6 +33,8 @@ class MyApp extends StatelessWidget {
         '/lecturermain': (context) => LecturerMain(),
         '/undergraduatemain': (context) => UndergraduateMain(),
         '/societymain': (context) => SocietyMain(),
+        '/eventsmain' : (context) => EventsMain(),
+        '/viewevent' : (context) => SingleEvent(),
       },
     );
   }

@@ -9,9 +9,14 @@ class UndergraduateMain extends StatefulWidget {
 
 class _UndergraduateMainState extends State<UndergraduateMain> {
 
-  Future<void> _gotoStore() async {
-    // TODO: Implement navigation
+  void gotoStore() async {
+    Navigator.pushNamed(context, "/gotoStore");
   }
+  void viewEvents() async {
+    Navigator.pushNamed(context, "/eventsmain");
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,8 +27,9 @@ class _UndergraduateMainState extends State<UndergraduateMain> {
           Container(
             margin: EdgeInsets.all(25),
             height: 50,
+            width: 200,
             child: ElevatedButton.icon(
-              onPressed: _gotoStore,
+              onPressed: gotoStore,
               icon: Icon(
                 Icons.store,
                 size: 24.0,
@@ -34,8 +40,9 @@ class _UndergraduateMainState extends State<UndergraduateMain> {
           Container(
             margin: EdgeInsets.all(25),
             height: 50,
+            width: 200,
             child: ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: viewEvents,
               icon: Icon(
                 Icons.calendar_month,
                 size: 24.0,
@@ -43,20 +50,15 @@ class _UndergraduateMainState extends State<UndergraduateMain> {
               label: Text('View Events'),
             ),
           ),
-          Text ('\n'),
-          Text ('\n'),
-          Text(
-            'Today',
-            textAlign: TextAlign.left,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-          ),
 
-        Container(
-            margin: EdgeInsets.all(25),
-            height: 150,
-            width: double.infinity,
-            color: Colors.blue,
+        Divider(
+          color: Colors.grey,
+          height: 50,
+          thickness: 2,
+        ),
 
+        Padding(
+          padding: const EdgeInsets.all(15.0),
           child: Text(
             'Today',
             textAlign: TextAlign.left,
@@ -68,8 +70,41 @@ class _UndergraduateMainState extends State<UndergraduateMain> {
             margin: EdgeInsets.all(25),
             height: 150,
             width: double.infinity,
-            color: Colors.blue,
+            color: Colors.blue[200],
+
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: RichText(
+              textAlign: TextAlign.left,
+              text: TextSpan(
+                children: [
+                  TextSpan(text:'Submission Deadline \n\n', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  TextSpan(text:'SCS 2201 - Assignment 02 \nDate: 05/03/2023 \nTime: 12.00AM', style: TextStyle(fontSize: 15))
+                ]
+              )
+            )
+          ),
         ),
+
+          Container(
+            margin: EdgeInsets.all(25),
+            height: 150,
+            width: double.infinity,
+            color: Colors.blue[200],
+
+            child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: RichText(
+                    textAlign: TextAlign.left,
+                    text: TextSpan(
+                        children: [
+                          TextSpan(text:'Lecture Time \n\n', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                          TextSpan(text:'SCS 2201 - Arrays \nDate: 05/03/2023 \nTime: 10.00AM', style: TextStyle(fontSize: 15))
+                        ]
+                    )
+                )
+            ),
+          ),
         ]
         ))
     );
