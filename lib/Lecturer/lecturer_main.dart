@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:login_flutter/Lecturer/add_lectures.dart';
+import 'package:login_flutter/Lecturer/schedule.dart';
 
 class LecturerMain extends StatefulWidget {
   const LecturerMain({Key? key}) : super(key: key);
@@ -8,11 +10,96 @@ class LecturerMain extends StatefulWidget {
 }
 
 class _LecturerMainState extends State<LecturerMain> {
+
+  //To go into lecturer's app pages
+  void AddLectures() {
+    Navigator.pushNamed(context, "/addlectures");
+  }
+
+  //To go into undergraduate's app pages
+  void AddSubmission() {
+    Navigator.pushNamed(context, "/addsubmission");
+  }
+
+  //To go into society's app pages
+  void Schedule() {
+    Navigator.pushNamed(context, "/schedule");
+  }
+
+  void Store() {
+    Navigator.pushNamed(context, "/schedule");
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Lecturer Main Page"),
+        title: Text("Lecturer's Page"),
+      ),
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(top: 50, bottom: 20),
+              height: 50,
+              width: 200,
+              child: ElevatedButton.icon(
+                onPressed: AddLectures,
+                icon: Icon(
+                  Icons.add,
+                  size: 24.0,
+                ),
+                label: Text('Add Lectures'),
+              ),
+            ),
+
+            Container(
+              margin: EdgeInsets.only(bottom: 20),
+              height: 50,
+              width: 200,
+              child: ElevatedButton.icon(
+                onPressed: AddSubmission,
+                icon: Icon(
+                  Icons.add,
+                  size: 24.0,
+                ),
+                label: Text('Add Submissions'),
+              ),
+            ),
+
+            Container(
+              margin: EdgeInsets.only(bottom: 20),
+              height: 50,
+              width: 200,
+              child: ElevatedButton.icon(
+                onPressed: Schedule,
+                icon: Icon(
+                  Icons.schedule,
+                  size: 24.0,
+                ),
+                label: Text('My Schedule'),
+              ),
+            ),
+
+            Container(
+              margin: EdgeInsets.only(bottom: 20),
+              height: 50,
+              width: 200,
+              child: ElevatedButton.icon(
+                onPressed: AddLectures,
+                icon: Icon(
+                  Icons.store,
+                  size: 24.0,
+                ),
+                label: Text('Store'),
+              ),
+            ),
+
+
+          ],
+        ),
       ),
     );
   }

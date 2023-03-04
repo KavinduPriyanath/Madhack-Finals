@@ -1,11 +1,21 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:login_flutter/Auth/main_page.dart';
 import 'package:login_flutter/Lecturer/lecturer_main.dart';
+import 'package:login_flutter/Lecturer/add-submissions.dart';
+import 'package:login_flutter/Lecturer/add_lectures.dart';
+import 'package:login_flutter/Lecturer/schedule.dart';
 import 'package:login_flutter/Pages/home_page.dart';
+import 'package:login_flutter/Society/add_events.dart';
 import 'package:login_flutter/Society/society_main.dart';
 import 'package:login_flutter/Undergraduates/undergraduate_main.dart';
+
 import 'package:login_flutter/Undergraduates/events_main.dart';
 import 'package:login_flutter/Undergraduates/single_event.dart';
+
+import 'Society/edit_profile.dart';
+import 'Society/view_event.dart';
+
+
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 
@@ -19,22 +29,49 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool showLoginPage = true;
+
+  void ToggleScreens() {
+
+    setState(() {
+      showLoginPage = !showLoginPage;
+    });
+
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       // initialRoute: "/currentMain",
-      home: HomePage(),
+      home: MainPage(),
       routes: {
         '/dwd' : (context) => MainPage(),
         '/currentMain' : (context) => HomePage(),
         '/lecturermain': (context) => LecturerMain(),
         '/undergraduatemain': (context) => UndergraduateMain(),
         '/societymain': (context) => SocietyMain(),
+
         '/eventsmain' : (context) => EventsMain(),
         '/viewevent' : (context) => SingleEvent(),
+
+
+        '/addlectures' : (context) => AddLectures(),
+        '/addsubmission':(context) => AddSubmission(),
+        '/schedule' : (context) => Schedule(),
+
+        '/createevents': (context) => AddSocietyEvents(),
+        '/viewevents': (context) => ViewSocietyEvents(),
+        '/editprofile': (context) => EditProfile(),
+
+
       },
     );
   }
