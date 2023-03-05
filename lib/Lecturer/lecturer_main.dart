@@ -31,6 +31,7 @@ class _LecturerMainState extends State<LecturerMain> {
     Navigator.pushNamed(context, "/schedule");
   }
 
+  int _currentIndex = 0;
 
 
   @override
@@ -90,7 +91,7 @@ class _LecturerMainState extends State<LecturerMain> {
               width: 200,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  FirebaseAuth.instance.signOut();
+                  Navigator.pushNamed(context, "/storeMain");
                 },
                 icon: Icon(
                   Icons.store,
@@ -103,6 +104,35 @@ class _LecturerMainState extends State<LecturerMain> {
 
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        backgroundColor: Colors.grey[200],
+        type: BottomNavigationBarType.fixed,
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: "Home",
+              backgroundColor: Colors.blueAccent
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: "Person",
+              backgroundColor: Colors.blueAccent
+          ),
+        ],
+        onTap: (index) {
+
+          if (index == 1) {
+            FirebaseAuth.instance.signOut();
+          }
+
+          setState(() {
+            _currentIndex = index;
+          });
+
+
+        },
       ),
     );
   }

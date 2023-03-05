@@ -14,6 +14,8 @@ class _CanteenMainState extends State<CanteenMain> {
     Navigator.pushNamed(context, "/canteenorder");
   }
 
+  int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,11 +62,11 @@ class _CanteenMainState extends State<CanteenMain> {
                       child: Column(
                         children: [
                           SizedBox(height: 10,),
-                          Image.asset('assets/string-hoppers.jpg',
+                          Image.asset('assets/rice_and_curry.jpeg',
                             height: 80,
                             width: 80,),
                           ListTile(
-                            title: Text('1600 Rs',
+                            title: Text('Rs. 200',
                               textAlign: TextAlign.center,
                               style: TextStyle(fontSize: 12.0),),
 
@@ -85,7 +87,7 @@ class _CanteenMainState extends State<CanteenMain> {
                           height: 80,
                           width: 80,),
                         ListTile(
-                          title: Text('1600 Rs',
+                          title: Text('Rs. 300',
                             textAlign: TextAlign.center,
                             style: TextStyle(fontSize: 12.0),),
 
@@ -101,11 +103,11 @@ class _CanteenMainState extends State<CanteenMain> {
                     child: Column(
                       children: [
                         SizedBox(height: 15,),
-                        Image.asset('assets/rice_and_curry.jpeg',
+                        Image.asset('assets/string-hoppers.jpg',
                           height: 80,
                           width: 80,),
                         ListTile(
-                          title: Text('1600 Rs',
+                          title: Text('Rs. 400',
                             textAlign: TextAlign.center,
                             style: TextStyle(fontSize: 12.0),),
 
@@ -125,7 +127,7 @@ class _CanteenMainState extends State<CanteenMain> {
                           height: 80,
                           width: 80,),
                         ListTile(
-                          title: Text('1600 Rs',
+                          title: Text('Rs. 800',
                             textAlign: TextAlign.center,
                             style: TextStyle(fontSize: 12.0),),
 
@@ -148,6 +150,35 @@ class _CanteenMainState extends State<CanteenMain> {
           ),
 
         ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        backgroundColor: Colors.grey[200],
+        type: BottomNavigationBarType.fixed,
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: "Home",
+              backgroundColor: Colors.blueAccent
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: "Person",
+              backgroundColor: Colors.blueAccent
+          ),
+        ],
+        onTap: (index) {
+
+          if (index == 1) {
+            FirebaseAuth.instance.signOut();
+          }
+
+          setState(() {
+            _currentIndex = index;
+          });
+
+
+        },
       ),
 
       // body: SafeArea(

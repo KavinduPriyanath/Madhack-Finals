@@ -36,7 +36,7 @@ class _OrderMainState extends State<OrderMain> {
           Padding(
               padding: const EdgeInsets.all(20.0),
               child: Image (
-                image: AssetImage("assets/rice.jpg"),
+                image: AssetImage("assets/rice_and_curry.jpeg"),
                 height: 200,
                 width: 200,
               )
@@ -170,6 +170,7 @@ class _OrderMainState extends State<OrderMain> {
         ],
         ),
       ),
+
     );
   }
 }
