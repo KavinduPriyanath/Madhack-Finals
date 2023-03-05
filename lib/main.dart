@@ -7,6 +7,11 @@ import 'package:login_flutter/Lecturer/schedule.dart';
 import 'package:login_flutter/Pages/home_page.dart';
 import 'package:login_flutter/Society/add_events.dart';
 import 'package:login_flutter/Society/society_main.dart';
+import 'package:login_flutter/Store/add_canteen.dart';
+import 'package:login_flutter/Store/add_stationary.dart';
+import 'package:login_flutter/Store/canteen_main.dart';
+import 'package:login_flutter/Store/stationary_main.dart';
+import 'package:login_flutter/Store/store_main.dart';
 import 'package:login_flutter/Undergraduates/undergraduate_main.dart';
 
 import 'package:login_flutter/Undergraduates/events_main.dart';
@@ -58,6 +63,7 @@ class _MyAppState extends State<MyApp> {
         '/lecturermain': (context) => LecturerMain(),
         '/undergraduatemain': (context) => UndergraduateMain(),
         '/societymain': (context) => SocietyMain(),
+        '/storeMain': (context) => StoreMain(),
 
         '/eventsmain' : (context) => EventsMain(),
         '/viewevent' : (context) => SingleEvent(),
@@ -70,6 +76,11 @@ class _MyAppState extends State<MyApp> {
         '/createevents': (context) => AddSocietyEvents(),
         '/viewevents': (context) => ViewSocietyEvents(),
         '/editprofile': (context) => EditProfile(),
+
+        '/canteenmain': (context) => CanteenMain(),
+        '/stationarymain': (context) => StationaryMain(),
+        '/addfoods': (context) => AddFoods(),
+        '/addstationary': (context) => AddStationary(),
 
 
       },

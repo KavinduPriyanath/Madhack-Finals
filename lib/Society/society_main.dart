@@ -30,10 +30,11 @@ class _SocietyMainState extends State<SocietyMain> {
         );
       }
       else if (_currentPageIndex == 1) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => Profile()),
-        );
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => Profile()),
+        // );
+        FirebaseAuth.instance.signOut();
       }
     });
   }
@@ -93,7 +94,8 @@ class _SocietyMainState extends State<SocietyMain> {
             ),
             GestureDetector(
               onTap: (){
-                FirebaseAuth.instance.signOut();
+                Navigator.pushNamed(context, '/storeMain');
+
               },
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(70, 10, 70, 10),
