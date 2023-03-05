@@ -24,13 +24,24 @@ class _CanteenMainState extends State<CanteenMain> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          
           Padding(
             padding: const EdgeInsets.fromLTRB(45.0, 10, 16, 0),
-            child: Text(
-              'Meals',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [Text(
+                'Meals',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+                ElevatedButton(
+                  onPressed: (){
+                    Navigator.pushNamed(context, '/specialorder');
+                  },
+                  child: Text('Spectial order'),
+                ),]
             ),
           ),
+
           Expanded(
             child: GridView.count(
               crossAxisCount: 2,
@@ -38,23 +49,28 @@ class _CanteenMainState extends State<CanteenMain> {
               mainAxisSpacing: 16.0,
               crossAxisSpacing: 16.0,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Card(
-                    color: Colors.blue[200],
-                    child: Column(
-                      children: [
-                        SizedBox(height: 10,),
-                        Image.asset('assets/string-hoppers.jpg',
-                          height: 80,
-                          width: 80,),
-                        ListTile(
-                          title: Text('1600 Rs',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 12.0),),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/singleorder');
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Card(
+                      color: Colors.blue[200],
+                      child: Column(
+                        children: [
+                          SizedBox(height: 10,),
+                          Image.asset('assets/string-hoppers.jpg',
+                            height: 80,
+                            width: 80,),
+                          ListTile(
+                            title: Text('1600 Rs',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 12.0),),
 
-                        ),
-                      ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
