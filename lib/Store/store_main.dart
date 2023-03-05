@@ -156,7 +156,7 @@ class _StoreMainState extends State<StoreMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Undergraduate Home"),
+        title: Text("Store"),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: studentCollection.snapshots(),

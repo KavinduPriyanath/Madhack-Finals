@@ -24,7 +24,7 @@ class _UndergraduateMainState extends State<UndergraduateMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Undergraduate Home"),
+        title: Text("Undergraduates"),
       ),
 
         body: SingleChildScrollView(
@@ -35,7 +35,7 @@ class _UndergraduateMainState extends State<UndergraduateMain> {
               width: 200,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  FirebaseAuth.instance.signOut();
+                  Navigator.pushNamed(context, "/storeMain");
                 },
                 icon: Icon(
                   Icons.store,
