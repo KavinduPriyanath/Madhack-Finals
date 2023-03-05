@@ -1,5 +1,6 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,6 +16,8 @@ enum SingingCharacter { Yes, No }
 class _AddFoodsState extends State<AddFoods> {
 
   SingingCharacter? _character = SingingCharacter.Yes;
+
+  int _currentIndex = 0;
 
   final _foodNameController = TextEditingController();
   final _sideDishesController = TextEditingController();
@@ -243,6 +246,35 @@ class _AddFoodsState extends State<AddFoods> {
             ),
           ),
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        backgroundColor: Colors.grey[200],
+        type: BottomNavigationBarType.fixed,
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: "Home",
+              backgroundColor: Colors.blueAccent
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: "Person",
+              backgroundColor: Colors.blueAccent
+          ),
+        ],
+        onTap: (index) {
+
+          if (index == 1) {
+            FirebaseAuth.instance.signOut();
+          }
+
+          setState(() {
+            _currentIndex = index;
+          });
+
+
+        },
       ),
     );
   }

@@ -10,6 +10,8 @@ import 'package:login_flutter/Society/society_main.dart';
 import 'package:login_flutter/Store/add_canteen.dart';
 import 'package:login_flutter/Store/add_stationary.dart';
 import 'package:login_flutter/Store/canteen_main.dart';
+import 'package:login_flutter/Store/canteen_single.dart';
+import 'package:login_flutter/Store/special_order.dart';
 import 'package:login_flutter/Store/stationary_main.dart';
 import 'package:login_flutter/Store/store_main.dart';
 import 'package:login_flutter/Undergraduates/undergraduate_main.dart';
@@ -81,6 +83,8 @@ class _MyAppState extends State<MyApp> {
         '/stationarymain': (context) => StationaryMain(),
         '/addfoods': (context) => AddFoods(),
         '/addstationary': (context) => AddStationary(),
+        '/specialorder': (context) => SpecialOrder(),
+        '/singleorder': (context) => OrderMain(),
 
 
       },

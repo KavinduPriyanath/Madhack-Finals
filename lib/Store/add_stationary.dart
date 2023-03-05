@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,6 +16,7 @@ class _AddStationaryState extends State<AddStationary> {
   final _priceController = TextEditingController();
 
 
+  int _currentIndex = 0;
 
   @override
   void dispose() {
@@ -158,6 +160,35 @@ class _AddStationaryState extends State<AddStationary> {
             ),
           ),
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        backgroundColor: Colors.grey[200],
+        type: BottomNavigationBarType.fixed,
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: "Home",
+              backgroundColor: Colors.blueAccent
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: "Person",
+              backgroundColor: Colors.blueAccent
+          ),
+        ],
+        onTap: (index) {
+
+          if (index == 1) {
+            FirebaseAuth.instance.signOut();
+          }
+
+          setState(() {
+            _currentIndex = index;
+          });
+
+
+        },
       ),
     );
 
